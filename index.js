@@ -1,11 +1,18 @@
-console.log("Adicione um número para fazer a média: ");
+//adiciona a mediana
+console.log("Adicione um número para fazer a média e a mediana: ");
+let numUsuario;
 let numeros = [];
 let media;
-process.stdin.on("data", function (data) {
-  let numero = Number(data.toString().trim());
+let mediana;
 
-  numeros.push(numero);
+process.stdin.on("data", function (data) {
+numUsuario = Number(data.toString().trim());
+  numeros.push(numUsuario);
+  numUsuario = 0;
   calculaMedia();
+  if (numeros.length >= 2) {
+    calculaMediana()
+  }
 });
 
 function calculaMedia() {
@@ -15,5 +22,12 @@ function calculaMedia() {
     media = soma / numeros.length;
 }
 console.log("média:", media);
-console.log("Adicione mais um número para fazer a média: ");
+}
+
+function calculaMediana() {
+    const sortNumeros = numeros.sort((a, b) => a - b) 
+    const  medianaIdenx = Math.floor(sortNumeros.length / 2);
+    mediana = sortNumeros[medianaIdenx]
+    console.log("mediana" , mediana)
+    return mediana;
 }
